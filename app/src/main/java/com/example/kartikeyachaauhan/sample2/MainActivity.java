@@ -16,12 +16,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public int quantity=0;
+
+    /**
+     * These two methods adjust the quantity.
+     */
+    public void IncreaseQuantity(View view) {
+        display(++quantity);
+    }
+    public void DecreaseQuantity(View view) {
+        if(quantity==0){
+            return;
+        }
+        display(--quantity);
+    }
+
     /**
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
 
-        display(++quantity);
+       // display(++quantity);
         displayPrice(quantity*5);
     }
     /**

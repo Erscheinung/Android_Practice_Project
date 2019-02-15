@@ -11,10 +11,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="0dp"
         android:layout_marginLeft="10dp"
         android:text="Quantity"
         android:textAllCaps="true"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <Button
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="10dp"
+        android:text="+"
+        android:textAllCaps="true"
+        android:onClick="IncreaseQuantity"
         />
 
     <TextView
@@ -22,15 +36,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
         android:text="0"
         android:textSize="16sp"
         android:textColor="@android:color/black"
         />
 
+    <Button
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="10dp"
+        android:text="-"
+        android:textAllCaps="true"
+        android:onClick="DecreaseQuantity"
+        />
+    </LinearLayout>
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="0dp"
         android:layout_marginBottom="16dp"
         android:layout_marginLeft="10dp"
         android:text="Price"
@@ -53,5 +81,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginLeft="10dp"
         android:text="Order"
-        android:onClick="submitOrder"/>
+        android:onClick="submitOrder"
+        />
+
 </LinearLayout>
