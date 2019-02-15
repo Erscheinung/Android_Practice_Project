@@ -15,12 +15,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public int pressed=0;
+    public int quantity=0;
     /**
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        display(++pressed);
+
+        display(++quantity);
+        displayPrice(quantity*5);
     }
     /**
      * This method displays the given quantity value on the screen.
