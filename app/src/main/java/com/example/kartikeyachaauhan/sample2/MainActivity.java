@@ -2,7 +2,9 @@ package com.example.kartikeyachaauhan.sample2;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -34,10 +36,38 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
+        CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
+        boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
 
-       // display(++quantity);
-        displayPrice(quantity*5);
+        int price = calculatePrice();
+        String message = createOrderSummary(price, hasWhippedCream);
+        display(message);
     }
+
+    /**
+     * This method calculates price
+     *
+     * @return total price
+     */
+    private int calculatePrice() {
+        return quantity * 5;
+    }
+
+    /**
+     *
+     * @param price of the order
+     * @param addWhippedCream — whether user wants the whipped cream
+     * @return text summary
+     */
+    private String createOrderSummary(int price, boolean addWhippedCream) {
+        String priceMessage = "Name: Nameless\n";
+        priceMessage += "Add whipped cream? " + addWhippedCream + "\n";
+        priceMessage += "Quantity: " + quantity + "\n";
+        priceMessage += "Total: $" + price + "\n";
+        priceMessage += "\nThank You!";
+        return priceMessage;
+    }
+
     /**
      * This method displays the given quantity value on the screen.
      */
@@ -50,9 +80,9 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method displays the given quantity value on the screen.
      */
-    private void displayPrice(int number) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+    private void display(String message) {
+        TextView orderSummaryView = (TextView) findViewById(R.id.order_summary_text_view);
+        orderSummaryView.setText(message);
     }
 
 }
