@@ -24,8 +24,10 @@ public class MainActivity extends AppCompatActivity {
      * These two methods adjust the quantity.
      */
     public void IncreaseQuantity(View view) {
+
         display(++quantity);
     }
+
     public void DecreaseQuantity(View view) {
         if(quantity==0){
             return;
@@ -47,22 +49,28 @@ public class MainActivity extends AppCompatActivity {
         EditText text = (EditText) findViewById(R.id.name_field);
         String name = text.getText().toString();
 
-        int price = calculatePrice();
+        int price = calculatePrice(hasWhippedCream,haschocolateCheckBox);
         String message = createOrderSummary(name, price, hasWhippedCream, haschocolateCheckBox);
         display(message);
     }
 
     /**
      * This method calculates price
-     *
      * @return total price
      */
-    private int calculatePrice() {
-        return quantity * 5;
+    private int calculatePrice(boolean cream,boolean chocolate) {
+        if(cream == true && chocolate == false)
+            return ((quantity * 5) + 1);
+        else if(chocolate == true && cream == false)
+            return ((quantity * 5) + 2);
+        else if(cream == true && chocolate == true)
+            return ((quantity * 5) + 3);
+        else
+            return quantity * 5;
+
     }
 
     /**
-     *
      * @param name of the customer
      * @param price of the order
      * @param addWhippedCream — whether user wants the whipped cream
