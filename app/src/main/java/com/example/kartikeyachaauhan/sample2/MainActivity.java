@@ -1,5 +1,7 @@
 package com.example.kartikeyachaauhan.sample2;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,14 +46,22 @@ public class MainActivity extends AppCompatActivity {
         boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
 
         CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
-        boolean haschocolateCheckBox = whippedCreamCheckBox.isChecked();
+        boolean haschocolate = chocolateCheckBox.isChecked();
 
         EditText text = (EditText) findViewById(R.id.name_field);
         String name = text.getText().toString();
 
-        int price = calculatePrice(hasWhippedCream,haschocolateCheckBox);
-        String message = createOrderSummary(name, price, hasWhippedCream, haschocolateCheckBox);
-        display(message);
+        int price = calculatePrice(hasWhippedCream,haschocolate);
+        String message = createOrderSummary(name, price, hasWhippedCream, haschocolate);
+        //display(message);
+
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:"));
+        intent.putExtra(Intent.EXTRA_SUBJECT,"Coffee order for "+name);
+        intent.putExtra(Intent.EXTRA_TEXT, message);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 
     /**
@@ -59,14 +69,16 @@ public class MainActivity extends AppCompatActivity {
      * @return total price
      */
     private int calculatePrice(boolean cream,boolean chocolate) {
-        if(cream == true && chocolate == false)
-            return ((quantity * 5) + 1);
-        else if(chocolate == true && cream == false)
-            return ((quantity * 5) + 2);
-        else if(cream == true && chocolate == true)
-            return ((quantity * 5) + 3);
-        else
-            return quantity * 5;
+        int base = 5;
+
+        if(cream) {
+            base += 1;
+        }
+        if(chocolate) {
+            base += 2;
+        }
+
+        return quantity * base;
 
     }
 
