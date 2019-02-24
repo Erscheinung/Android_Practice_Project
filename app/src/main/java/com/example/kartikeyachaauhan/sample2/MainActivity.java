@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
 
         CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
-        boolean haschocolateCheckBox = whippedCreamCheckBox.isChecked();
+        boolean haschocolateCheckBox = chocolateCheckBox.isChecked();
 
         EditText text = (EditText) findViewById(R.id.name_field);
         String name = text.getText().toString();
@@ -59,14 +59,14 @@ public class MainActivity extends AppCompatActivity {
      * @return total price
      */
     private int calculatePrice(boolean cream,boolean chocolate) {
-        if(cream == true && chocolate == false)
-            return ((quantity * 5) + 1);
-        else if(chocolate == true && cream == false)
-            return ((quantity * 5) + 2);
-        else if(cream == true && chocolate == true)
-            return ((quantity * 5) + 3);
-        else
-            return quantity * 5;
+        
+        int base = 5;
+        if(cream)
+            base += 1;
+        if(chocolate)
+            base += 2;
+        
+        return quantity * base;
 
     }
 
