@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
      * This method displays the given quantity value on the screen.
      */
     private void display(String message) {
-        TextView orderSummaryView = (TextView) findViewById(R.id.order_summary_text_view);
+        TextView orderSummaryView = (TextView) findViewById(R.id.quantity_text_view);
         orderSummaryView.setText(message);
     }
 
